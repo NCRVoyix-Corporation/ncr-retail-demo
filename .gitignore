@@ -8,6 +8,7 @@ package-lock.json
 
 # testing
 /coverage
+/frontend-test/vendor/*.tgz
 
 # next.js
 /.next/

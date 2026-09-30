@@ -90,6 +90,13 @@ Seeding the database is Experimental at this time. To learn more about how it wo
 
 **Note**: The Retail Demo currently uses NCR's Staging environment while certain APIs are not in production yet. If you are looking for more help, please reach out to the `#developer-advocate-team` in Slack.
 
+### Frontend test setup
+
+The Playwright tests under `frontend-test/` depend on a private internal package tarball that is not committed to this public repository.
+
+If you are an internal user and need to run those tests, see [`frontend-test/vendor/README.md`](./frontend-test/vendor/README.md) for setup details.
+
+
 ## Support
 
 Feel free to open an issue! If there are any bugs you find or any features you would like to see implemented, create the appropriate issue on the repository.

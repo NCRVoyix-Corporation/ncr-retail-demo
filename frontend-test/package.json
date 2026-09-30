@@ -1,0 +1,24 @@
+{
+    "name": "mart-consumer-frontend-test-example",
+    "private": true,
+    "devDependencies": {
+        "@playwright/test": "1.62.1",
+        "@types/node": "^26.4.0",
+        "dotenv-cli": "^11.0.0",
+        "prettier": "^3.8.3"
+    },
+    "scripts": {
+        "test:mart-namer-dev": "dotenv -e ./env/namer-dev.env -o -- npx playwright test playwright/tests --config=./playwright/config/playwright.config.namer-dev.ts",
+        "test:mart-namer-dev-ui": "dotenv -e ./env/namer-dev.env -o -- npx playwright test playwright/tests --config=./playwright/config/playwright.config.namer-dev.ts --ui"
+    },
+    "dependencies": {
+        "devex-frontend-test-kit": "file:./vendor/devex-frontend-test-kit-0.1.0.tgz"
+    },
+    "imports": {
+        "#testkit/*": "devex-frontend-test-kit/*"
+    },
+    "devNotes": {
+        "testKitLocal": "file:../../..",
+        "testKitTarball": "file:../../../devex-frontend-test-kit-0.1.0.tgz"
+    }
+}

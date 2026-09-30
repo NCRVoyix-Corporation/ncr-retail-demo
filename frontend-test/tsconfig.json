@@ -1,0 +1,5 @@
+﻿{
+    // Default for normal consumer/package-style resolution.
+    // Switch to ./tsconfig.src.json when you want to debug into the kit source.
+    "extends": "./tsconfig.dist.json"
+}
