@@ -16,9 +16,5 @@
     },
     "imports": {
         "#testkit/*": "devex-frontend-test-kit/*"
-    },
-    "devNotes": {
-        "testKitLocal": "file:../../..",
-        "testKitTarball": "file:../../../devex-frontend-test-kit-0.1.0.tgz"
     }
 }
