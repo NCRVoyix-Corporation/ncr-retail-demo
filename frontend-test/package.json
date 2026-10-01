@@ -1,5 +1,5 @@
 {
-    "name": "mart-consumer-frontend-test-example",
+    "name": "mart-frontend-test",
     "private": true,
     "devDependencies": {
         "@playwright/test": "1.62.1",

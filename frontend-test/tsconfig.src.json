@@ -1,9 +1,0 @@
-﻿{
-    "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "paths": {
-            "#testkit/*": ["./shared/devex-frontend-test-kit/src/playwright/helpers/*"],
-            "@helpers/*": ["./shared/devex-frontend-test-kit/src/playwright/helpers/*"]
-        }
-    }
-}
