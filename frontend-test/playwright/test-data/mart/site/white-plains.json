@@ -1,0 +1,17 @@
+{
+    "id": "white plains",
+    "name": "White Plains Dash In",
+    "enterpriseUnitName": "White Plains Dash In",
+    "address": {
+        "city": "Atlanta",
+        "country": "USA",
+        "postalCode": "30318",
+        "state": "GA",
+        "street": "1115 Donald Lee Hollowell Pkwy NW"
+    },
+    "coordinates": {
+        "latitude": 33.7715123,
+        "longitude": -84.4251949
+    },
+    "status": "ACTIVE"
+}

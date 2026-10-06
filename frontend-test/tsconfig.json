@@ -1,0 +1,20 @@
+﻿{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "#testkit/*": ["./node_modules/devex-frontend-test-kit/dist/playwright/helpers/*"]
+        },
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "lib": ["ESNext", "DOM"],
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "types": ["node", "playwright"]
+    },
+    "include": ["**/*.ts"],
+    "exclude": ["node_modules", "dist"]
+}
