@@ -55,7 +55,7 @@ const CatalogForm = ({ id, categories }) => {
 
   let { data, isLoading, isError } = useCatalogItem(id);
   const [initialValues, setInitialValues] = useState(init);
-  if (id && !isLoading && !isError && initialValues.itemId == '') {
+  if (id && !isLoading && !isError && initialValues.itemId === '') {
     const { departmentId, itemId, longDescription, nonMerchandise, shortDescription, status, version, groups } = data.catalogItem.data;
     let catalogValues = {
       version: version + 1,
@@ -137,7 +137,7 @@ const CatalogForm = ({ id, categories }) => {
       fetch(`/api/items/${id}`, { method: 'POST', body: JSON.stringify(data) })
         .then((res) => res.json())
         .then((data) => {
-          if (data.response.status != 204) {
+          if (data.response.status !== 204) {
             setShowAlert({
               status: data.response.status,
               message: data.response.data.message
@@ -156,18 +156,21 @@ const CatalogForm = ({ id, categories }) => {
         .then((data) => {
           let error = false;
           for (let key in data) {
-            if (data[key].status != 204) {
-              setShowAlert({
-                status: data[key].status,
-                message: data[key].data.message
-              });
-              error = true;
+            if (data[key].status !== 204) {
+              if (data[key].status !== undefined) {
+                setShowAlert({
+                  status: data[key].status,
+                  message: `You have encountered an error with status ${data[key].status}`
+                });
+                error = true;
+              }
+              // Add code here to deal with undefined response
             }
           }
           if (!error) {
             setShowAlert({
               status: 200,
-              message: 'Item successfully created.'
+              message: 'Item successfully created and added to catalog.'
             });
           }
           setVisible(true);
@@ -225,7 +228,7 @@ const CatalogForm = ({ id, categories }) => {
                         <ErrorMessage name="shortDescription" component="div" className="invalid-feedback" />
                       </div>
                       <div className="form-group">
-                        <label htmlFor="longDescription">Long Description</label>
+                        <label htmlFor="longDescription">Long Description*</label>
                         <Field
                           as="textarea"
                           rows="4"
@@ -270,13 +273,15 @@ const CatalogForm = ({ id, categories }) => {
                         </div>
                         <div className="form-row">
                           <div className="form-group col-md-4">
-                            <label htmlFor="effectiveDate">Effective Date</label>
+                            <label htmlFor="effectiveDate">Effective Date*</label>
                             <DatePicker name="effectiveDate" />
                           </div>
+{/*
                           <div className="form-group col-md-4">
                             <label htmlFor="endDate">End Date</label>
                             <DatePicker name="endDate" />
                           </div>
+*/}
                         </div>
                       </CardBody>
                     ) : (
@@ -289,7 +294,7 @@ const CatalogForm = ({ id, categories }) => {
                     <CardBody>
                       <div className="form-row">
                         <div className="form-group col-md-6">
-                          <label htmlFor="version">Version</label>
+                          <label htmlFor="version">Version*</label>
                           <Field name="version" id="version" className={`${errors.version && touched.version ? 'is-invalid' : null} form-control`} />
                           <ErrorMessage name="version" component="div" className="invalid-feedback" />
                         </div>

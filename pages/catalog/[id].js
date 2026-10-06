@@ -20,6 +20,7 @@ const CatalogItem = ({ id }) => {
   const [logs, setLogs] = useState([]);
 
   const handleAddToCart = (itemObj) => {
+    console.log("itemObj", itemObj)
     itemObj['quantity'] = quantity;
     setAddingToCart(true);
     setAddedToCart(false);

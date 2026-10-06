@@ -46,9 +46,9 @@ const NavigationTabs = ({ activeTab, tabs = true }) => {
       <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Resources</h6>
       <Nav>
         <NavItem>
-          <NavLink href="https://developer.ncr.com/" target="_blank">
+          <NavLink href="https://developer.ncrvoyix.com/" target="_blank">
             <FontAwesomeIcon icon={faExternalLinkAlt} className="feather" size="sm" />
-            NCR Documentation & API Specs
+            NCR Voyix Documentation & API Specs
           </NavLink>
         </NavItem>
         <NavItem>

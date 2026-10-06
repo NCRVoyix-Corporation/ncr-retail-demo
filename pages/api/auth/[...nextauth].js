@@ -1,10 +1,12 @@
 import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/react';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import { createUser, getCurrentUserProfileData } from '~/lib/provisioning';
 import { authenticateUser, exchangeToken } from '~/lib/security';
+import jwt from "jsonwebtoken";
 
 const options = {
   site: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+  secret: process.env.NEXTAUTH_SECRET,
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
@@ -53,14 +55,14 @@ const options = {
               let expiresAt = new Date();
               expiresAt.setSeconds(expiresAt.getSeconds() + 900);
               let userSessionObj = {
-                token: authenticateUserResponse.data.token,
+                accessToken: authenticateUserResponse.data.token,
                 username: user.username,
-                givenName: user.givenName,
+                name: user.givenName,
                 expires: expiresAt
               };
-              return Promise.resolve(userSessionObj);
+              return userSessionObj;
             }
-            return Promise.reject(userProfile);
+            return null;
           } else {
             return Promise.reject(authenticateUserResponse);
           }
@@ -91,12 +93,12 @@ const options = {
             let expiresAt = new Date();
             expiresAt.setSeconds(expiresAt.getSeconds() + 900);
             let userSessionObj = {
-              token: data.token,
+              accessToken: data.token,
               username: user.username,
-              givenName: user.givenName,
+              name: user.givenName,
               expires: expiresAt
             };
-            return Promise.resolve(userSessionObj);
+            return userSessionObj;
           }
           return Promise.reject();
         } else {
@@ -116,12 +118,12 @@ const options = {
       },
       authorize: async (credentials) => {
         let userProfile = await getCurrentUserProfileData(credentials.token);
-        if (userProfile.status == 200) {
+        if (userProfile.status === 200) {
           let user = userProfile.data;
           let expiresAt = new Date();
           expiresAt.setSeconds(expiresAt.getSeconds() + 900);
           let userSessionObj = {
-            token: credentials.token,
+            accessToken: credentials.token,
             username: user.username,
             givenName: user.givenName,
             expires: expiresAt
@@ -133,31 +135,37 @@ const options = {
     })
   ],
   callbacks: {
-    session: async (session, user) => {
-      session.user = user.data;
-      // Renew token if token expires in 5 minutes.
+    async session({ session, token }) {
+      session.user.token = token.accessToken;
       let now = new Date().getTime() / 1000;
-      let expires = new Date(session.user.expires).getTime() / 1000;
-      console.log('session time left: ', expires - now);
+      let expires = new Date(session.expires).getTime() / 1000;
       if (expires - now < 500) {
-        console.log('I need to reauthenticate my token ' + session.user.token);
-        let newToken = await exchangeToken(session.user.token);
+        let newToken = await exchangeToken(token.token.token.user.token);
         session.user.token = newToken.data.token;
         let expiresAt = new Date();
         expiresAt.setSeconds(expiresAt.getSeconds() + 900);
         session.user.expires = expiresAt;
       }
-      return Promise.resolve(session);
+      let decodedToken = jwt.decode(session.user.token);
+      session.user.username = decodedToken.sub;
+      return session;
     },
-    jwt: async (token, user) => {
-      if (user) {
-        token.data = user;
+    async jwt({ token, account, profile }) {
+      if (account) {
+        token.accessToken = account.accessToken;
       }
-      return Promise.resolve(token);
+      if (profile) {
+        token.profile = profile;
+      }
+      return token;
+    },
+    async signIn({ user, account }) {
+      account.accessToken = user.accessToken;
+      return true;
     }
   },
   session: {
-    jwt: true
+    strategy: 'jwt'
   },
   debug: true
 };

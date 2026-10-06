@@ -28,7 +28,7 @@ function UserStoreProvider(props) {
       localStorage.setItem('userStore', JSON.stringify(userStore));
     }
   }, [userStore]);
-
+  
   return <UserStoreContext.Provider value={{ userStore, setUserStore }}>{props.children}</UserStoreContext.Provider>;
 }
 

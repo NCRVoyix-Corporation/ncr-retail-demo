@@ -14,7 +14,7 @@
       "threshold_profile": "Web Monitors",
       "timeout_seconds": 15,
       "type": "url",
-      "url": "https://retaildemo.ncrcloud.com/api/health",
+      "url": "https://retaildemo.ncrvoyixcloud.com/api/health",
       "user_alert_groups": [""],
       "webhooks": ["SRE site 24/7 Alerts integrations", "PagerDutyIntegration-BSPSRE", "DevEx"]
     }

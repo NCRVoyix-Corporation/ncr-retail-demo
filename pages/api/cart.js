@@ -2,7 +2,7 @@ import { createCart, addItemToCart, getCartItemsById, updateItemInCartById } fro
 let logs = [];
 export default async function handler(req, res) {
   let body = JSON.parse(req.body);
-  if (body.etag == false || body.location == false) {
+  if (body.etag === false || body.location === false) {
     let cart = await createCart(body.siteId);
     logs.push(cart.log);
     let location = cart.headers.get('location');
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     let pageContent = cartItems.data.pageContent;
     for (let index = 0; index < pageContent.length; index++) {
       const element = pageContent[index];
-      if (element.itemId.value == itemId) {
+      if (element.itemId.value === itemId) {
         update = element;
         break;
       }

@@ -85,7 +85,9 @@ export default function Login({ query = false }) {
                   <CardFooter className="bg">
                     <p className="text-muted mb-0">
                       Need have an account?{' '}
-                      <a href="/auth/register" className="link p-0 m-0">Register</a>
+                      <a href="/auth/register" className="link p-0 m-0">
+                        Register
+                      </a>
                     </p>
                   </CardFooter>
                 </Card>

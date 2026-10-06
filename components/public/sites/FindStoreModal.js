@@ -32,6 +32,9 @@ const FindStoreModal = (props) => {
           .then((body) => {
             const { response } = body;
             setSites(response.data.pageContent);
+          })
+          .catch((e) => {
+            console.log('error from frontend: ' + e);
           });
       }
     };

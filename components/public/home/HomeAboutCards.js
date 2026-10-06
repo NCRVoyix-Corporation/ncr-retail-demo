@@ -10,7 +10,7 @@ const HomeAboutCards = () => {
           <FontAwesomeIcon icon={faProjectDiagram} size="2x" className="text-dark d-md-none d-lg-flex" />
           <CardBody>
             <CardTitle tag="h2" className="h5 font-weight-bolder text-dark">
-              Built with NCR APIs
+              Built with NCR Voyix APIs
             </CardTitle>
             <CardText className="text-dark">Integrated with Catalog, Sites, Order, Selling, Provisioning, Security, and more.</CardText>
           </CardBody>
@@ -34,7 +34,7 @@ const HomeAboutCards = () => {
             <CardTitle tag="h2" className="h5 font-weight-bolder text-dark">
               Admin Interface
             </CardTitle>
-            <CardText className="text-dark">Deepen your understanding of NCR APIs by creating sites, new catalog items, and more.</CardText>
+            <CardText className="text-dark">Deepen your understanding of NCR Voyix APIs by creating sites, new catalog items, and more.</CardText>
           </CardBody>
         </Card>
       </Col>

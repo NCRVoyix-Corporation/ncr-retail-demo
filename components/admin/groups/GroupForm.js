@@ -28,7 +28,7 @@ const GroupForm = ({ id }) => {
 
   const [initialValues, setInitialValues] = useState(init);
   let { data, isLoading, isError } = useGroup(id);
-  if (id && !isLoading && !isError && initialValues.title == '') {
+  if (id && !isLoading && !isError && initialValues.title === '') {
     let group = data.response.data;
     let newValues = {
       version: group.version + 1,
@@ -64,22 +64,20 @@ const GroupForm = ({ id }) => {
       ]
     };
     fetch(`/api/groups`, { method: 'POST', body: JSON.stringify(data) })
-      .then((response) => response.json())
-      .then((data) => {
-        const { response } = data;
-        if (response.status != 200) {
-          setShowAlert({
-            status: response.status,
-            message: response.data.message
-          });
-        } else {
-          setShowAlert({
-            status: response.status,
-            message: 'Group successfully created'
-          });
-        }
-        setVisible(true);
-      });
+        .then((response) => {
+          if (response.status !== 204) {
+            setShowAlert({
+              status: response.status,
+              message: response.data.message
+            });
+          } else {
+            setShowAlert({
+              status: 200,
+              message: 'Group successfully created'
+            });
+          }
+          setVisible(true);
+        });
   };
 
   return (

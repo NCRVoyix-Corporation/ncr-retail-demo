@@ -1,14 +1,5 @@
 {
-  "ExpandedNodes": [
-    "",
-    "\\components",
-    "\\components\\admin",
-    "\\components\\admin\\catalog",
-    "\\components\\admin\\sites",
-    "\\components\\public",
-    "\\data",
-    "\\pages"
-  ],
+  "ExpandedNodes": ["", "\\components", "\\components\\admin", "\\components\\admin\\catalog", "\\components\\admin\\sites", "\\components\\public", "\\data", "\\pages"],
   "SelectedNode": "\\components\\admin\\catalog\\Catalog.js",
   "PreviewInSolutionExplorer": false
 }

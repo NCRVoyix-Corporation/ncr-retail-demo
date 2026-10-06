@@ -35,7 +35,11 @@ export default async function handler(req, res) {
       res.status(response.status).json({ response, logs: [response.log] });
     }
   } else {
-    let response = await findNearby();
-    res.status(response.status).json({ response, logs: [response.log] });
+    try {
+      let response = await findNearby();
+      return res.status(response.status).json({ response, logs: [response.log] });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

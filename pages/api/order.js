@@ -57,7 +57,7 @@ export default async function handler(req, res) {
 
     lineItems.forEach((item) => {
       order['orderLines'].push({
-        lineId: item.linId,
+        lineId: item.lineId,
         description: item.description,
         extendedAmount: item.extendedAmount,
         itemType: item.itemType,
@@ -70,7 +70,7 @@ export default async function handler(req, res) {
 
     let result = await createOrder(store.id, order);
     logs.push(result.log);
-
+    
     let userCart = body.userCart;
     let userCartStatus = await updateUserCartStatus(store.id, userCart.location, 'Closed');
     logs.push(userCartStatus.log);

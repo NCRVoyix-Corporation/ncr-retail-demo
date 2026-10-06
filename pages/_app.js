@@ -25,8 +25,8 @@ export function reportWebVitals(metric) {
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SessionProvider 
-        options={{
+    <SessionProvider
+      options={{
         clientMaxAge: 0,
         keepAlive: 0
       }}
@@ -43,4 +43,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp
+export default MyApp;

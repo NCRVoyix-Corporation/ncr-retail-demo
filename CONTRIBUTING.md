@@ -1,4 +1,4 @@
-# Contributing to NCR Retail Demo
+# Contributing to NCR Voyix Retail Demo
 
 We :heart: contributions from our community! Thank you for taking the time to review this guide and understand how we work. And please remember, all interactions in this repository should adhere to the [code of conduct](CODE_OF_CONDUCT.md).
 

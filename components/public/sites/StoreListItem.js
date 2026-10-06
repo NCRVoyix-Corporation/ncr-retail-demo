@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+
 const StoreListItem = ({ toggle, setUserStore, site }) => {
   if (site.address) {
     const [addingUserStore, setAddingUserStore] = useState(false);

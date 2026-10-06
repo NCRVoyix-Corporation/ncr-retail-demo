@@ -36,7 +36,7 @@ const Header = ({ activeTab, tabs = true }) => {
           <Nav className="px-md-3">
             <div className="flex-column d-block d-sm-none">
               <NavItem>
-                <a  href="/admin/dashboard" className={`nav-link ${activeTab === 'dashboard' && 'active'} ${!tabs && 'pl-0'}`}>
+                <a href="/admin/dashboard" className={`nav-link ${activeTab === 'dashboard' && 'active'} ${!tabs && 'pl-0'}`}>
                   <FontAwesomeIcon icon={faTachometerAlt} size="sm" className="feather mr-2 pl-1" />
                   Dashboard
                 </a>
@@ -74,9 +74,9 @@ const Header = ({ activeTab, tabs = true }) => {
               <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">Resources</h6>
 
               <NavItem>
-                <NavLink href="https://developer.ncr.com/" target="_blank">
+                <NavLink href="https://developer.ncrvoyix.com/" target="_blank">
                   <FontAwesomeIcon icon={faExternalLinkAlt} className="feather mr-2" size="sm" />
-                  NCR Documentation & API Specs
+                  NCR Voyix Documentation & API Specs
                 </NavLink>
               </NavItem>
               <NavItem>

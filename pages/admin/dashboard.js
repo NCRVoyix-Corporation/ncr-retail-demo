@@ -5,9 +5,12 @@ import Skeleton from 'react-loading-skeleton';
 import useDashboard from '~/lib/swr/useDashboard';
 import Orders from '~/components/admin/orders/Orders';
 import Layout from '~/components/admin/Layout';
+import React, {useContext} from 'react';
+import {UserStoreContext} from "~/context/userStore";
 
 const Dashboard = () => {
-  let { data, isLoading, isError } = useDashboard();
+  const { userStore } = useContext(UserStoreContext);
+  let { data, isLoading, isError } = useDashboard({ storeID: userStore.id });
   let ordersPlaced = [];
   let ordersReceived = [];
   let ordersInFulfillment = [];

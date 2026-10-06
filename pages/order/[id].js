@@ -85,7 +85,6 @@ export default function Order({ id, categories }) {
 
 export async function getServerSideProps(context) {
   const response = await getCategoryNodesForMenu();
-  console.log('thedd resp', response);
   const { categories, logs } = JSON.parse(JSON.stringify(response));
   return {
     props: {

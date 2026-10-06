@@ -35,7 +35,7 @@ const HomeGroups = ({ isError, isLoading, userStore, data }) => {
 
   return (
     <div className="index-list mb-4 row">
-      {userStore.id &&
+      {userStore.id && data.home &&
         data.home.map((element) => (
           <Col md={6} key={element.group.data.groupId.groupCode}>
             <Card className="d-flex align-items-center justify-content-center flex-row p-4 h-100">
@@ -43,7 +43,9 @@ const HomeGroups = ({ isError, isLoading, userStore, data }) => {
                 <CardTitle tag="h2" className="text-white">
                   {element.group.data.title.values[0].value}
                 </CardTitle>
-                <a href={`/group/${element.group.data.groupId.groupCode}`} className="btn btn-light">Shop Now</a>
+                <a href={`/group/${element.group.data.groupId.groupCode}`} className="btn btn-light">
+                  Shop Now
+                </a>
               </CardBody>
               <Image
                 src={element && element.group && element.group.data && element.group.data.tag ? element.group.data.tag : ''}

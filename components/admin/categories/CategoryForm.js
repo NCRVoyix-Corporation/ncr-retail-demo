@@ -35,7 +35,7 @@ const CategoryForm = ({ categoryId, categoryNodes }) => {
   const onDismiss = () => setVisible(false);
   let { category, isLoading, isError } = useCategory(categoryId);
   const [initialValues, setInitialValues] = useState(init);
-  if (categoryId && !isLoading && !isError && initialValues.nodeCode == '') {
+  if (categoryId && !isLoading && !isError && initialValues.nodeCode === '') {
     const { response } = category;
     const { data } = response;
     const { departmentNode, departmentSale, nodeCode, status, tag, version, title, parentId } = data;
@@ -54,7 +54,7 @@ const CategoryForm = ({ categoryId, categoryNodes }) => {
   const [parentCategory, setParentCategory] = useState();
 
   const handleSubmit = async (values) => {
-    if (values['parentCategory'] == '' && parentCategory) {
+    if (values['parentCategory'] === '' && parentCategory) {
       values['parentCategory'] = parentCategory;
     }
 
@@ -94,10 +94,8 @@ const CategoryForm = ({ categoryId, categoryNodes }) => {
         method: 'PUT',
         body: JSON.stringify(nodes)
       })
-        .then((response) => response.json())
-        .then((data) => {
-          const { response } = data;
-          if (response.status != 204) {
+        .then((response) => {
+          if (!(response.status === 204 || response.status === 200)) {
             setShowAlert({
               status: response.status,
               message: response.data.message
@@ -111,23 +109,24 @@ const CategoryForm = ({ categoryId, categoryNodes }) => {
           setVisible(true);
         });
     } else {
-      fetch(`/api/category`, { method: 'PUT', body: JSON.stringify(nodes) })
-        .then((response) => response.json())
-        .then((data) => {
-          const { response } = data;
-          if (response.status != 204) {
-            setShowAlert({
-              status: response.status,
-              message: response.data.message
-            });
-          } else {
-            setShowAlert({
-              status: 200,
-              message: 'Category successfully updated.'
-            });
-          }
-          setVisible(true);
-        });
+      fetch(`/api/category`, { 
+        method: 'PUT', 
+        body: JSON.stringify(nodes) 
+      })
+          .then((response) => {
+            if (response.status !== 204) {
+              setShowAlert({
+                status: response.status, 
+                message: response.data.message
+              });
+            } else {
+              setShowAlert({
+                status: 200, 
+                message: 'Category successfully created.'
+              });
+            }
+            setVisible(true);
+          });
     }
   };
 
@@ -234,7 +233,7 @@ const CategoryForm = ({ categoryId, categoryNodes }) => {
                       <CategorySelect
                         currentCategory={initialValues.nodeCode}
                         initialCategory={initialValues.parentCategory ?? ''}
-                        setDisabled={initialValues.parentCategory || categoryId ? true : false}
+                        setDisabled={!!(initialValues.parentCategory || categoryId)}
                         setParentCategory={setParentCategory}
                         categories={categoryNodes}
                       />

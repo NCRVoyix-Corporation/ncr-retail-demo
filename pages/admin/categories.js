@@ -8,7 +8,7 @@ import Layout from '~/components/admin/Layout';
 import useDashboard from '~/lib/swr/useDashboard';
 
 const CategoriesTab = () => {
-  let { data, isLoading, isError } = useDashboard('category');
+  let { data, isLoading, isError } = useDashboard({ param: 'category' });
 
   return (
     <Layout activeTab="categories">

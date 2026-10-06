@@ -16,7 +16,9 @@ const SubHeader = ({ data, userStore, setIsModalOpen, isLoading, isError }) => {
           {!isError && (
             <Nav navbar>
               <NavItem>
-                <a href="/catalog" className="pl-0 nav-link">All Items</a>
+                <a href="/catalog" className="pl-0 nav-link">
+                  All Items
+                </a>
               </NavItem>
               {!isLoading &&
                 !isError &&
@@ -48,7 +50,9 @@ const SubHeader = ({ data, userStore, setIsModalOpen, isLoading, isError }) => {
                   }
                   return (
                     <UncontrolledDropdown className="py-2 pl-1" nav inNavbar key={category.nodeCode}>
-                        <a href={`/category/${category.nodeCode}`} className="text-darker">{category.title.value}</a>
+                      <a href={`/category/${category.nodeCode}`} className="text-darker">
+                        {category.title.value}
+                      </a>
                     </UncontrolledDropdown>
                   );
                 })}

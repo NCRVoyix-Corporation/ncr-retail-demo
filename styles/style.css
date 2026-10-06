@@ -455,12 +455,12 @@ label {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-.build-database{
+.build-database {
   display: flex;
 }
 
 @media (max-width: 767.98px) {
-  .build-database{
+  .build-database {
     display: inline-block;
   }
 }

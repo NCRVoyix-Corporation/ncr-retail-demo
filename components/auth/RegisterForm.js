@@ -115,7 +115,9 @@ export default function Register() {
                   <CardFooter className="bg">
                     <p className="text-muted mb-0">
                       Already have an account?{' '}
-                      <a href="/auth/login" className="link p-0 m-0">Login</a>
+                      <a href="/auth/login" className="link p-0 m-0">
+                        Login
+                      </a>
                     </p>
                   </CardFooter>
                 </Card>

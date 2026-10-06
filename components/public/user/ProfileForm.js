@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Row, Card, CardBody, CardTitle, Col, Button, Spinner, Alert } from 'reactstrap';
+import { Row, Card, CardBody, CardTitle, Col, Alert } from 'reactstrap';
 import { useRouter } from 'next/router';
 
 const createConsumerSchema = Yup.object().shape({
@@ -44,7 +44,7 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
   const [visible, setVisible] = useState(false);
 
   const onDismiss = () => setVisible(false);
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [setIsUpdating] = useState(false);
   const { data } = user;
   const { email, familyName, givenName, username, address, phoneNumber } = data;
   let userNameSplit = username.split('@');
@@ -87,7 +87,7 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
       .then((data) => {
         // This is always failing.
         setIsUpdating(false);
-        if (data.response.status != 200) {
+        if (data.response.status !== 200) {
           setShowAlert({
             status: data.response.status,
             message: `Uhoh, we've hit an error. Please try again later.`
@@ -117,16 +117,19 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
   return (
     <Formik initialValues={initialValues} validationSchema={createConsumerSchema} onSubmit={handleSubmit}>
       {(formik) => {
-        const { errors, touched, isValid, dirty } = formik;
+        const { errors, touched} = formik;
         return (
           <Form>
-            <Alert toggle={onDismiss} isOpen={visible} className="my-4" color={showAlert.status == 200 ? 'success' : 'danger'}>
+            <Alert toggle={onDismiss} isOpen={visible} className="my-4" color={showAlert.status === 200 ? 'success' : 'danger'}>
               {showAlert.message}
             </Alert>
             <Row>
               <Col>
                 <h4 className="mb-2">My Profile</h4>
               </Col>
+            {
+              /*
+              TODO: Fix Update Profile functionality              
               <Col>
                 <div className="form-group float-right">
                   <Button color="primary" type="submit" className={`${!(dirty && isValid) ? 'disabled' : ''}`} disabled={!(dirty && isValid)}>
@@ -134,6 +137,8 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
                   </Button>
                 </div>
               </Col>
+              */
+            }
             </Row>
 
             <Row>
@@ -153,14 +158,14 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
                       <Col sm="6">
                         <div className="form-group">
                           <label htmlFor="givenName">First Name*</label>
-                          <Field name="givenName" id="givenName" className={`${errors.givenName && touched.givenName ? 'is-invalid' : null} form-control`} />
+                          <Field name="givenName" id="givenName" className={`${errors.givenName && touched.givenName ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="givenName" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
                       <Col sm="6">
                         <div className="form-group">
                           <label htmlFor="familyName">Last Name*</label>
-                          <Field name="familyName" id="familyName" className={`${errors.familyName && touched.familyName ? 'is-invalid' : null} form-control`} />
+                          <Field name="familyName" id="familyName" className={`${errors.familyName && touched.familyName ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="familyName" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
@@ -181,7 +186,7 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
                       <Col sm="6">
                         <div className="form-group">
                           <label htmlFor="phoneNumber">Phone Number</label>
-                          <Field name="phoneNumber" id="phoneNumber" className={`${errors.phoneNumber && touched.phoneNumber ? 'is-invalid' : null} form-control`} />
+                          <Field name="phoneNumber" id="phoneNumber" className={`${errors.phoneNumber && touched.phoneNumber ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="phoneNumber" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
@@ -190,7 +195,7 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
                       <Col sm="12">
                         <div className="form-group">
                           <label htmlFor="street">Street</label>
-                          <Field name="street" id="street" className={`${errors.street && touched.street ? 'is-invalid' : null} form-control`} />
+                          <Field name="street" id="street" className={`${errors.street && touched.street ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="street" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
@@ -199,28 +204,28 @@ export default function ProfileForm({ session, user, logs, setLogs }) {
                       <Col sm="4">
                         <div className="form-group">
                           <label htmlFor="city">City</label>
-                          <Field name="city" id="city" className={`${errors.city && touched.city ? 'is-invalid' : null} form-control`} />
+                          <Field name="city" id="city" className={`${errors.city && touched.city ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="city" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
                       <Col sm="2">
                         <div className="form-group ">
                           <label htmlFor="state">State</label>
-                          <Field name="state" id="state" className={`${errors.state && touched.state ? 'is-invalid' : null} form-control`} />
+                          <Field name="state" id="state" className={`${errors.state && touched.state ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="state" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
                       <Col sm="3">
                         <div className="form-group ">
                           <label htmlFor="postalCode">Postal Code</label>
-                          <Field name="postalCode" id="postalCode" className={`${errors.postalCode && touched.postalCode ? 'is-invalid' : null} form-control`} />
+                          <Field name="postalCode" id="postalCode" className={`${errors.postalCode && touched.postalCode ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="postalCode" component="div" className="invalid-feedback" />
                         </div>
                       </Col>
                       <Col sm="3">
                         <div className="form-group ">
                           <label htmlFor="country">Country</label>
-                          <Field name="country" id="country" className={`${errors.country && touched.country ? 'is-invalid' : null} form-control`} />
+                          <Field name="country" id="country" className={`${errors.country && touched.country ? 'is-invalid' : null} form-control`} disabled />
                           <ErrorMessage name="country" component="div" className="invalid-feedback" />
                         </div>
                       </Col>

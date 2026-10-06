@@ -8,7 +8,7 @@ import Layout from '~/components/admin/Layout';
 import useDashboard from '~/lib/swr/useDashboard';
 
 const CatalogTab = () => {
-  let { data, isLoading, isError } = useDashboard('catalog');
+  let { data, isLoading, isError } = useDashboard({ param: 'catalog' });
 
   return (
     <Layout activeTab="catalog">

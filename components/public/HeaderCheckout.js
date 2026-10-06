@@ -8,7 +8,9 @@ export default function HeaderCheckout() {
           <Container>
             <Row className="align-items-center">
               <Col sm="4" md="3">
-                <a href="/" className="logo-text">MART</a>
+                <a href="/" className="logo-text">
+                  MART
+                </a>
               </Col>
             </Row>
           </Container>

@@ -41,7 +41,7 @@ export default function Catalog({ query }) {
     <Layout logs={data && data.logs ? data.logs : []} title="Catalog">
       <div className="container my-4 flex-grow-1">
         <Row>
-          {catalogItems.map((item) => (
+          {catalogItems.filter(item => item.itemAttributes !== undefined).map((item) => (
             <Col sm="6" md="3" className="mb-4" key={item.item.itemId.itemCode}>
               <ItemCard catalogItem={item} />
             </Col>

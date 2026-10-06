@@ -14,7 +14,7 @@ function ProfileDropdown() {
   const toggle = () => setDropdownOpen(!dropdownOpen);
   return (
     <div className="d-inline-block">
-      {!status && (!session || !session.user) ? (
+      {status == 'unauthenticated' ? (
         <Link href="/auth/login">
           <Button color="link" className="text-light py-0 px-2 text-left d-flex flex-column justify-content-start text-decoration-none">
             <span>
@@ -26,7 +26,7 @@ function ProfileDropdown() {
             </span>
           </Button>
         </Link>
-      ) : status ? (
+      ) : status == 'loading' ? (
         <Button color="link" className="text-light p-0 text-left d-flex flex-column justify-content-start text-decoration-none">
           <span>
             <Spinner color="light" size="sm" />
@@ -36,7 +36,7 @@ function ProfileDropdown() {
         <div className="nav">
           <Dropdown isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle tag="a" caret className="text-white text-decoration-none pointer">
-              <FontAwesomeIcon icon={faUser} /> {session.user.givenName}
+              <FontAwesomeIcon icon={faUser} /> {session.user.name}
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem
